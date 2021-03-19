@@ -1,0 +1,33 @@
+<yandex>
+   <default_replica_path replace="replace">/clickhouse/tables/{shard}/{database}/{table}</default_replica_path>
+   <default_replica_name replace="replace">{replica}</default_replica_name>
+   <remote_servers replace="replace">
+        <!-- Test only shard config for testing distributed storage -->
+        <replicated>
+            <shard>
+              <replica>
+                  <host>click-one</host>
+                  <port>9000</port>
+               </replica>
+               <replica>
+                  <host>click-two</host>
+                  <port>9000</port>
+               </replica>
+             </shard>
+        </replicated>
+        <distributed>
+            <shard>
+              <replica>
+                  <host>click-one</host>
+                  <port>9000</port>
+               </replica>
+            </shard>
+            <shard>
+               <replica>
+                  <host>click-two</host>
+                  <port>9000</port>
+               </replica>>
+             </shard>
+        </distributed>
+    </remote_servers>
+</yandex>

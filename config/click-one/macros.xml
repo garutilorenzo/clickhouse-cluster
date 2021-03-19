@@ -1,0 +1,6 @@
+<yandex>
+  <macros replace="replace">
+      <shard>01</shard>
+      <replica>click-one</replica>
+  </macros>
+</yandex>

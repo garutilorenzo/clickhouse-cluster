@@ -22,7 +22,7 @@ services:
      - "3306:3306"
 
     click-two:
-     image: lickhouse:latest
+     image: clickhouse:latest
      volumes:
       - ./config/click-two:/etc/clickhouse-server/config.d
       - type: volume

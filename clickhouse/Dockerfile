@@ -69,4 +69,7 @@ ENV CLICKHOUSE_CONFIG /etc/clickhouse-server/config.xml
 
 ENTRYPOINT ["/entrypoint.sh"]
 
+HEALTHCHECK --retries=10 --timeout=3s \
+  CMD wget --spider -T 1 -q "http://127.0.0.1:8123/ping" || exit 1
+
 CMD ["clickhouse-server"]

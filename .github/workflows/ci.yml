@@ -1,0 +1,30 @@
+name: MySQL InnoDB Cluster CI
+
+on:
+  push:
+    branches:
+    - master
+  pull_request:
+    branches:
+    - master
+
+jobs:
+
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: Build Docker images
+      run: docker-compose -f .docker-compose.yml-ci build --pull --no-cache
+    - name: Bringup the environment
+      run: docker-compose -f .docker-compose.yml-ci up -d
+    - name: Sleep for 30 seconds
+      uses: jakejarvis/wait-action@master
+      with:
+        time: '60s'
+    - name: List all containers
+      run: docker ps -a
+    - name: Get cluster status
+      run: docker-compose -f .docker-compose.yml-ci exec -T click-one clickhouse-client -q "select * from system.clusters;" 

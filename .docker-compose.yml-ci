@@ -1,0 +1,51 @@
+version: "3.4"
+services:
+    click-one:
+     image: clickhouse:latest
+     build:
+      context: clickhouse/
+      args:
+       - http_proxy=$http_proxy
+       - https_proxy=$http_proxy
+       - clickhouse_version=21.3.2
+     volumes:
+      - ./sql/:/docker-entrypoint-initdb.d
+      - ./config/click-one:/etc/clickhouse-server/config.d
+      - type: volume
+        source: click-one-data
+        target: /var/lib/clickhouse
+     depends_on:
+      - "zookeeper"
+     ports:
+     - "8123:8123"
+     - "9000:9000"
+     - "3306:3306"
+
+    click-two:
+     image: lickhouse:latest
+     volumes:
+      - ./config/click-two:/etc/clickhouse-server/config.d
+      - type: volume
+        source: click-two-data
+        target: /var/lib/clickhouse
+     depends_on:
+      - "zookeeper"
+
+    zookeeper:
+     image: zookeeper
+     volumes:
+      - type: volume
+        source: zookeeper-data
+        target: /data
+      - type: volume
+        source: zookeeper-log
+        target: /datalog
+     restart: always
+     healthcheck:
+        test: ["CMD", "zkServer.sh", "status"]
+
+volumes:
+ click-one-data:
+ click-two-data:
+ zookeeper-data:
+ zookeeper-log:

@@ -1,4 +1,4 @@
-name: MySQL InnoDB Cluster CI
+name: Clickhouse Cluster CI
 
 on:
   push:

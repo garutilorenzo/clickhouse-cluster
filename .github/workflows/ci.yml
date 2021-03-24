@@ -26,5 +26,7 @@ jobs:
         time: '60s'
     - name: List all containers
       run: docker ps -a
-    - name: Get cluster status
-      run: docker-compose -f .docker-compose.yml-ci exec -T click-one clickhouse-client -q "select * from system.clusters;" 
+    - name: Get  distributed cluster status
+      run: if [ $(docker-compose exec -T click-one clickhouse-client -q "select count(*) from system.clusters where cluster = 'distributed';") -eq 2 ]; then echo "OK" || exit 0; fi
+    - name: Get replicated cluster status
+      run: if [ $(docker-compose exec -T click-one clickhouse-client -q "select count(*) from system.clusters where cluster = 'replicated';") -eq 2 ]; then echo "OK" || exit 0; fi

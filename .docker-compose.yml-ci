@@ -7,7 +7,7 @@ services:
       args:
        - http_proxy=$http_proxy
        - https_proxy=$http_proxy
-       - clickhouse_version=21.3.2
+       - clickhouse_version=21.3.6
      volumes:
       - ./sql/:/docker-entrypoint-initdb.d
       - ./config/click-one:/etc/clickhouse-server/config.d

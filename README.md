@@ -61,6 +61,7 @@ the cluster configuration is located in cluster.xml on both config directories:
 ```
 
 [Replicated](https://clickhouse.tech/docs/en/engines/table-engines/mergetree-family/replication/) cluster is made by 2 servers, both of them are in the same shard this means that each table will be replicate 1 to 1 form one server to another.
+
 [Distributed](https://clickhouse.tech/docs/en/engines/table-engines/special/distributed/) cluster is also made by two servers, but the servers are spread in two shard. **NOTE:** This config is not safe for production environments! Each shard in this configuration has no replica, this means that if we lose a server the entire distributed cluster will be inaccessible and we can have a possible data loss.
 
 # Start the cluster
@@ -78,6 +79,7 @@ The files:
 * replicated.sql - creates tutorial_replicated database and then tutorial_replicated.hits_v1 table
 
 This table is the same used on clickhouse [tutorial](https://clickhouse.tech/docs/en/getting-started/tutorial/)
+
 You can then download the sample dataset:
 
 ```

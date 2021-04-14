@@ -8,9 +8,9 @@
 # original docker push command
 echo "overwriting docker push $IMAGE_NAME"
 
-LATEST=21.3.2
+LATEST=21.3.6
 
-for clickhouse_version in 20.3.20 20.3.21 20.8.4 20.8.5 20.8.6 20.8.7 20.8.8 20.8.9 20.8.10 20.8.11 20.8.12 20.8.13 20.8.14 21.3.2 
+for clickhouse_version in 20.3.20 20.3.21 20.8.4 20.8.5 20.8.6 20.8.7 20.8.8 20.8.9 20.8.10 20.8.11 20.8.12 20.8.13 20.8.14 20.8.15 20.8.16 20.8.17 21.3.2 21.3.3 21.3.4 21.3.5 21.3.6
 do
     # The new image tag will include the version of our software, prefixed to the os image we're currently building
     if [ $clickhouse_version = $LATEST ]; then

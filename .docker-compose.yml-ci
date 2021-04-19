@@ -1,7 +1,7 @@
 version: "3.4"
 services:
     click-one:
-     image: clickhouse:latest
+     image: localbuild/clickhouse:latest
      build:
       context: clickhouse/
       args:
@@ -22,7 +22,7 @@ services:
      - "3306:3306"
 
     click-two:
-     image: clickhouse:latest
+     image: localbuild/clickhouse:latest
      volumes:
       - ./config/click-two:/etc/clickhouse-server/config.d
       - type: volume
